@@ -5,7 +5,6 @@ import com.example.easysourcingexamplespring.domain.CustomerCommand.CreateCustom
 import com.example.easysourcingexamplespring.domain.CustomerEvent;
 import com.example.easysourcingexamplespring.domain.CustomerEvent.CustomerCreated;
 import com.example.easysourcingexamplespring.handlers.CustomerCommandHandler;
-import com.example.easysourcingexamplespring.handlers.CustomerEventHandler;
 import com.example.easysourcingexamplespring.handlers.CustomerEventSourcingHandler;
 import io.github.alikelleci.easysourcing.core.EasySourcing;
 import io.github.alikelleci.easysourcing.core.common.annotations.TopicInfo;
@@ -21,7 +20,6 @@ import org.apache.kafka.streams.TopologyTestDriver;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
@@ -72,8 +70,6 @@ class EasysourcingExampleSpringApplicationTests {
 						.lastName("Doe")
 						.build())
 				.build();
-
-		System.out.println(command);
 
 		// publish command to topic with aggregateId as key!
 		commands.pipeInput(command.getAggregateId(), command);
