@@ -1,4 +1,4 @@
-package com.example.easysourcingexamplespring.controller;
+package com.example.easysourcingexamplespring.common;
 
 import io.github.alikelleci.easysourcing.core.messaging.commandhandling.exceptions.CommandExecutionException;
 import jakarta.servlet.http.HttpServletRequest;

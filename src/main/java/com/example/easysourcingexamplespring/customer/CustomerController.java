@@ -1,9 +1,8 @@
-package com.example.easysourcingexamplespring.controller;
+package com.example.easysourcingexamplespring.customer;
 
-import com.example.easysourcingexamplespring.domain.CustomerCommand;
-import com.example.easysourcingexamplespring.domain.CustomerCommand.AddCredits;
-import com.example.easysourcingexamplespring.domain.CustomerCommand.DeleteCustomer;
-import com.example.easysourcingexamplespring.domain.CustomerCommand.IssueCredits;
+import com.example.easysourcingexamplespring.customer.shared.CustomerCommand.AddCredits;
+import com.example.easysourcingexamplespring.customer.shared.CustomerCommand.DeleteCustomer;
+import com.example.easysourcingexamplespring.customer.shared.CustomerCommand.IssueCredits;
 import com.github.javafaker.Faker;
 import io.github.alikelleci.easysourcing.core.messaging.commandhandling.gateway.CommandGateway;
 import lombok.extern.slf4j.Slf4j;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.Instant;
 import java.util.concurrent.CompletableFuture;
 
-import static com.example.easysourcingexamplespring.domain.CustomerCommand.CreateCustomer;
+import static com.example.easysourcingexamplespring.customer.shared.CustomerCommand.CreateCustomer;
 
 @Slf4j
 @RestController

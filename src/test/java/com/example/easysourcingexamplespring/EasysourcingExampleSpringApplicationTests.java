@@ -1,13 +1,13 @@
 package com.example.easysourcingexamplespring;
 
-import com.example.easysourcingexamplespring.domain.CustomerCommand;
-import com.example.easysourcingexamplespring.domain.CustomerCommand.AddCredits;
-import com.example.easysourcingexamplespring.domain.CustomerCommand.CreateCustomer;
-import com.example.easysourcingexamplespring.domain.CustomerEvent;
-import com.example.easysourcingexamplespring.domain.CustomerEvent.CreditsAdded;
-import com.example.easysourcingexamplespring.domain.CustomerEvent.CustomerCreated;
-import com.example.easysourcingexamplespring.handlers.CustomerCommandHandler;
-import com.example.easysourcingexamplespring.handlers.CustomerEventSourcingHandler;
+import com.example.easysourcingexamplespring.customer.shared.CustomerCommand;
+import com.example.easysourcingexamplespring.customer.shared.CustomerCommand.AddCredits;
+import com.example.easysourcingexamplespring.customer.shared.CustomerCommand.CreateCustomer;
+import com.example.easysourcingexamplespring.customer.shared.CustomerEvent;
+import com.example.easysourcingexamplespring.customer.shared.CustomerEvent.CreditsAdded;
+import com.example.easysourcingexamplespring.customer.shared.CustomerEvent.CustomerCreated;
+import com.example.easysourcingexamplespring.customer.core.CustomerCommandHandler;
+import com.example.easysourcingexamplespring.customer.core.CustomerEventSourcingHandler;
 import io.github.alikelleci.easysourcing.core.EasySourcing;
 import io.github.alikelleci.easysourcing.core.common.annotations.TopicInfo;
 import io.github.alikelleci.easysourcing.core.messaging.commandhandling.Command;

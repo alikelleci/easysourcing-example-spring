@@ -1,12 +1,11 @@
-package com.example.easysourcingexamplespring.handlers;
+package com.example.easysourcingexamplespring.customer.core;
 
-import com.example.easysourcingexamplespring.domain.Customer;
-import com.example.easysourcingexamplespring.domain.CustomerEvent.CreditsAdded;
-import com.example.easysourcingexamplespring.domain.CustomerEvent.CreditsIssued;
-import com.example.easysourcingexamplespring.domain.CustomerEvent.CustomerCreated;
-import com.example.easysourcingexamplespring.domain.CustomerEvent.CustomerDeleted;
-import com.example.easysourcingexamplespring.domain.CustomerEvent.FirstNameChanged;
-import com.example.easysourcingexamplespring.domain.CustomerEvent.LastNameChanged;
+import com.example.easysourcingexamplespring.customer.shared.CustomerEvent.CreditsAdded;
+import com.example.easysourcingexamplespring.customer.shared.CustomerEvent.CreditsIssued;
+import com.example.easysourcingexamplespring.customer.shared.CustomerEvent.CustomerCreated;
+import com.example.easysourcingexamplespring.customer.shared.CustomerEvent.CustomerDeleted;
+import com.example.easysourcingexamplespring.customer.shared.CustomerEvent.FirstNameChanged;
+import com.example.easysourcingexamplespring.customer.shared.CustomerEvent.LastNameChanged;
 import io.github.alikelleci.easysourcing.core.common.annotations.MessageId;
 import io.github.alikelleci.easysourcing.core.common.annotations.MetadataValue;
 import io.github.alikelleci.easysourcing.core.common.annotations.Timestamp;

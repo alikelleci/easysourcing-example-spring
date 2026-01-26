@@ -1,8 +1,7 @@
-package com.example.easysourcingexamplespring.domain;
+package com.example.easysourcingexamplespring.customer.core;
 
 import io.github.alikelleci.easysourcing.core.common.annotations.AggregateId;
 import io.github.alikelleci.easysourcing.core.common.annotations.AggregateRoot;
-import io.github.alikelleci.easysourcing.core.common.annotations.TopicInfo;
 import lombok.Builder;
 import lombok.Value;
 

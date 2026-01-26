@@ -1,7 +1,7 @@
 package com.example.easysourcingexamplespring.config;
 
-import com.example.easysourcingexamplespring.domain.CustomerCommand;
-import com.example.easysourcingexamplespring.domain.CustomerEvent;
+import com.example.easysourcingexamplespring.customer.shared.CustomerCommand;
+import com.example.easysourcingexamplespring.customer.shared.CustomerEvent;
 import io.github.alikelleci.easysourcing.core.common.annotations.TopicInfo;
 import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.admin.NewTopic;
@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
-public class TopicConfig {
+public class EasySourcingTopicConfig {
 
   @Bean
   public KafkaAdmin admin() {

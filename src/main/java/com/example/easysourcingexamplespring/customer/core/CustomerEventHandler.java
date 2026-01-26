@@ -1,15 +1,15 @@
-package com.example.easysourcingexamplespring.handlers;
+package com.example.easysourcingexamplespring.customer.core;
 
-import com.example.easysourcingexamplespring.domain.CustomerEvent.CustomerCreated;
-import com.example.easysourcingexamplespring.domain.CustomerEvent.FirstNameChanged;
-import com.example.easysourcingexamplespring.domain.CustomerEvent.LastNameChanged;
+import com.example.easysourcingexamplespring.customer.shared.CustomerEvent.CustomerCreated;
+import com.example.easysourcingexamplespring.customer.shared.CustomerEvent.FirstNameChanged;
+import com.example.easysourcingexamplespring.customer.shared.CustomerEvent.LastNameChanged;
 import io.github.alikelleci.easysourcing.core.messaging.eventhandling.annotations.HandleEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import static com.example.easysourcingexamplespring.domain.CustomerEvent.CreditsAdded;
-import static com.example.easysourcingexamplespring.domain.CustomerEvent.CreditsIssued;
-import static com.example.easysourcingexamplespring.domain.CustomerEvent.CustomerDeleted;
+import static com.example.easysourcingexamplespring.customer.shared.CustomerEvent.CreditsAdded;
+import static com.example.easysourcingexamplespring.customer.shared.CustomerEvent.CreditsIssued;
+import static com.example.easysourcingexamplespring.customer.shared.CustomerEvent.CustomerDeleted;
 
 @Slf4j
 @Component

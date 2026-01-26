@@ -1,17 +1,16 @@
-package com.example.easysourcingexamplespring.handlers;
+package com.example.easysourcingexamplespring.customer.core;
 
-import com.example.easysourcingexamplespring.domain.Customer;
-import com.example.easysourcingexamplespring.domain.CustomerCommand.AddCredits;
-import com.example.easysourcingexamplespring.domain.CustomerCommand.ChangeFirstName;
-import com.example.easysourcingexamplespring.domain.CustomerCommand.ChangeLastName;
-import com.example.easysourcingexamplespring.domain.CustomerCommand.CreateCustomer;
-import com.example.easysourcingexamplespring.domain.CustomerCommand.DeleteCustomer;
-import com.example.easysourcingexamplespring.domain.CustomerCommand.IssueCredits;
-import com.example.easysourcingexamplespring.domain.CustomerEvent;
-import com.example.easysourcingexamplespring.domain.CustomerEvent.CustomerCreated;
-import com.example.easysourcingexamplespring.domain.CustomerEvent.CustomerDeleted;
-import com.example.easysourcingexamplespring.domain.CustomerEvent.FirstNameChanged;
-import com.example.easysourcingexamplespring.domain.CustomerEvent.LastNameChanged;
+import com.example.easysourcingexamplespring.customer.shared.CustomerCommand.AddCredits;
+import com.example.easysourcingexamplespring.customer.shared.CustomerCommand.ChangeFirstName;
+import com.example.easysourcingexamplespring.customer.shared.CustomerCommand.ChangeLastName;
+import com.example.easysourcingexamplespring.customer.shared.CustomerCommand.CreateCustomer;
+import com.example.easysourcingexamplespring.customer.shared.CustomerCommand.DeleteCustomer;
+import com.example.easysourcingexamplespring.customer.shared.CustomerCommand.IssueCredits;
+import com.example.easysourcingexamplespring.customer.shared.CustomerEvent;
+import com.example.easysourcingexamplespring.customer.shared.CustomerEvent.CustomerCreated;
+import com.example.easysourcingexamplespring.customer.shared.CustomerEvent.CustomerDeleted;
+import com.example.easysourcingexamplespring.customer.shared.CustomerEvent.FirstNameChanged;
+import com.example.easysourcingexamplespring.customer.shared.CustomerEvent.LastNameChanged;
 import io.github.alikelleci.easysourcing.core.common.annotations.MessageId;
 import io.github.alikelleci.easysourcing.core.common.annotations.MetadataValue;
 import io.github.alikelleci.easysourcing.core.common.annotations.Timestamp;
@@ -23,8 +22,8 @@ import org.springframework.stereotype.Component;
 
 import java.time.Instant;
 
-import static com.example.easysourcingexamplespring.domain.CustomerEvent.CreditsAdded;
-import static com.example.easysourcingexamplespring.domain.CustomerEvent.CreditsIssued;
+import static com.example.easysourcingexamplespring.customer.shared.CustomerEvent.CreditsAdded;
+import static com.example.easysourcingexamplespring.customer.shared.CustomerEvent.CreditsIssued;
 import static io.github.alikelleci.easysourcing.core.messaging.Metadata.CORRELATION_ID;
 
 
