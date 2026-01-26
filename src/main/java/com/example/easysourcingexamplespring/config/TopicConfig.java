@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.TopicBuilder;
 import org.springframework.kafka.core.KafkaAdmin;
+import org.springframework.kafka.core.KafkaAdmin.NewTopics;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,27 +25,34 @@ public class TopicConfig {
   }
 
   @Bean
-  public NewTopic commandsTopic() {
-    return TopicBuilder
-        .name(CustomerCommand.class.getAnnotation(TopicInfo.class).value())
-        .partitions(1)
+  public NewTopics topics() {
+    return new NewTopics(
+        // BookingSubscription
+        commandTopic(CustomerCommand.class),
+        commandResultsTopic(CustomerCommand.class),
+        eventTopic(CustomerEvent.class)
+
+        // Other aggregate topics...
+    );
+  }
+
+  private NewTopic commandTopic(Class<?> commandClass) {
+    return TopicBuilder.name(commandClass.getAnnotation(TopicInfo.class).value())
+        .partitions(10)
         .build();
   }
 
-  @Bean
-  public NewTopic resultsTopic() {
+  private NewTopic commandResultsTopic(Class<?> commandClass) {
     return TopicBuilder
-        .name(CustomerCommand.class.getAnnotation(TopicInfo.class).value().concat(".results"))
-        .partitions(1)
+        .name(commandClass.getAnnotation(TopicInfo.class)
+            .value() + ".results").partitions(10)
         .build();
   }
 
-  @Bean
-  public NewTopic eventsTopic() {
+  private NewTopic eventTopic(Class<?> eventClass) {
     return TopicBuilder
-        .name(CustomerEvent.class.getAnnotation(TopicInfo.class).value())
-        .partitions(1)
-        .config("retention.ms", "-1")
+        .name(eventClass.getAnnotation(TopicInfo.class).value())
+        .partitions(10).config("retention.ms", "-1")
         .build();
   }
 
