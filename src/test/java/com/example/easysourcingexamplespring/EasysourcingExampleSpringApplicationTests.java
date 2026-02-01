@@ -25,9 +25,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.instanceOf;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class EasysourcingExampleSpringApplicationTests {
 
@@ -90,8 +88,8 @@ class EasysourcingExampleSpringApplicationTests {
 		List<Event> result = events.readValuesToList();
 
 		// assert
-		assertThat(result.size(), equalTo(2));
-		assertThat(result.get(0).getPayload(), instanceOf(CustomerCreated.class));
-		assertThat(result.get(1).getPayload(), instanceOf(CreditsAdded.class));
+		assertThat(result).hasSize(2);
+		assertThat(result.get(0).getPayload()).isInstanceOf(CustomerCreated.class);
+		assertThat(result.get(1).getPayload()).isInstanceOf(CreditsAdded.class);
 	}
 }
