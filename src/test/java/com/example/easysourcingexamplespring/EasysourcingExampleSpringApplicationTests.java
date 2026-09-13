@@ -1,13 +1,13 @@
 package com.example.easysourcingexamplespring;
 
-import com.example.easysourcingexamplespring.customer.shared.CustomerCommand;
-import com.example.easysourcingexamplespring.customer.shared.CustomerCommand.AddCredits;
-import com.example.easysourcingexamplespring.customer.shared.CustomerCommand.CreateCustomer;
-import com.example.easysourcingexamplespring.customer.shared.CustomerEvent;
-import com.example.easysourcingexamplespring.customer.shared.CustomerEvent.CreditsAdded;
-import com.example.easysourcingexamplespring.customer.shared.CustomerEvent.CustomerCreated;
-import com.example.easysourcingexamplespring.customer.core.CustomerCommandHandler;
-import com.example.easysourcingexamplespring.customer.core.CustomerEventSourcingHandler;
+import com.example.easysourcingexamplespring.order.OrderCommand;
+import com.example.easysourcingexamplespring.order.OrderCommand.ConfirmOrder;
+import com.example.easysourcingexamplespring.order.OrderCommand.PlaceOrder;
+import com.example.easysourcingexamplespring.order.OrderCommandHandler;
+import com.example.easysourcingexamplespring.order.OrderEvent;
+import com.example.easysourcingexamplespring.order.OrderEvent.OrderConfirmed;
+import com.example.easysourcingexamplespring.order.OrderEvent.OrderPlaced;
+import com.example.easysourcingexamplespring.order.OrderEventSourcingHandler;
 import io.github.alikelleci.easysourcing.core.EasySourcing;
 import io.github.alikelleci.easysourcing.core.common.annotations.TopicInfo;
 import io.github.alikelleci.easysourcing.core.messaging.commandhandling.Command;
@@ -36,19 +36,19 @@ class EasysourcingExampleSpringApplicationTests {
 	@BeforeEach
 	void setUp() {
 		EasySourcing easySourcing = EasySourcing.builder()
-				.registerHandler(new CustomerCommandHandler())
-				.registerHandler(new CustomerEventSourcingHandler())
+				.registerHandler(new OrderCommandHandler())
+				.registerHandler(new OrderEventSourcingHandler())
 				.build();
 
 		testDriver = new TopologyTestDriver(easySourcing.topology());
 
 		commands = testDriver.createInputTopic(
-				CustomerCommand.class.getAnnotation(TopicInfo.class).value(),
+				OrderCommand.class.getAnnotation(TopicInfo.class).value(),
 				new StringSerializer(),
 				new JsonSerializer<>());
 
 		events = testDriver.createOutputTopic(
-				CustomerEvent.class.getAnnotation(TopicInfo.class).value(),
+				OrderEvent.class.getAnnotation(TopicInfo.class).value(),
 				new StringDeserializer(),
 				new JsonDeserializer<>(Event.class));
 	}
@@ -62,34 +62,35 @@ class EasysourcingExampleSpringApplicationTests {
 
 
 	@Test
-	void AddCreditsTest() {
+	void ShipOrderTest() {
 		Command command = Command.builder()
-				.payload(CreateCustomer.builder()
-						.id("cust-1")
-						.firstName("John")
-						.lastName("Doe")
+				.payload(PlaceOrder.builder()
+						.id("order-1")
+						.customer("John Doe")
+						.shippingAddress("Some Street 212")
+						.couponCode("HMX004")
 						.build())
 				.build();
 
 		// publish command to topic with aggregateId as key!
 		commands.pipeInput(command.getAggregateId(), command);
 
-		 command = Command.builder()
-				.payload(AddCredits.builder()
-						.id("cust-1")
+		command = Command.builder()
+				.payload(ConfirmOrder.builder()
+						.id("order-1")
 						.build())
 				.build();
 
 		// publish command to topic with aggregateId as key!
 		commands.pipeInput(command.getAggregateId(), command);
-
 
 		// read events
 		List<Event> result = events.readValuesToList();
 
 		// assert
 		assertThat(result).hasSize(2);
-		assertThat(result.get(0).getPayload()).isInstanceOf(CustomerCreated.class);
-		assertThat(result.get(1).getPayload()).isInstanceOf(CreditsAdded.class);
+		assertThat(result.get(0).getPayload()).isInstanceOf(OrderPlaced.class);
+		assertThat(result.get(1).getPayload()).isInstanceOf(OrderConfirmed.class);
 	}
+
 }

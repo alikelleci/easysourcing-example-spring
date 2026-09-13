@@ -1,4 +1,4 @@
-package com.example.easysourcingexamplespring.customer.core;
+package com.example.easysourcingexamplespring.order;
 
 import io.github.alikelleci.easysourcing.core.common.annotations.AggregateId;
 import io.github.alikelleci.easysourcing.core.common.annotations.AggregateRoot;
@@ -10,12 +10,14 @@ import java.time.Instant;
 @Value
 @Builder(toBuilder = true)
 @AggregateRoot
-public class Customer {
+public class Order {
   @AggregateId
-  private String id;
-  private String firstName;
-  private String lastName;
-  private int credits;
-  private Instant birthday;
-  private Instant dateCreated;
+  String id;
+  String customer;
+  String shippingAddress;
+  String couponCode;
+  String status;
+  String trackingNumber;
+  Instant placedAt;
 }
+
